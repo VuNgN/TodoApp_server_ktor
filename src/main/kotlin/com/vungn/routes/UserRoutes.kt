@@ -34,7 +34,6 @@ fun Route.userRoutes() {
             val name = formParameters.getOrFail("name")
             val email = formParameters.getOrFail("email")
             val avatar = formParameters.getOrFail("avatar")
-            println("$name + $email + $avatar")
             val result = Database.database.insert(UserEntity) {
                 set(it.name, name)
                 set(it.email, email)
