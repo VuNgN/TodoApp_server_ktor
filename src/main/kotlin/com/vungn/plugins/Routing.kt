@@ -1,5 +1,6 @@
 package com.vungn.plugins
 
+import com.vungn.routes.authRoutes
 import com.vungn.routes.taskRoutes
 import com.vungn.routes.userRoutes
 import io.ktor.server.application.*
@@ -9,5 +10,6 @@ fun Application.configureRouting() {
     routing {
         userRoutes()
         taskRoutes()
+        authRoutes()
     }
 }

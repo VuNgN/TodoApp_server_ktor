@@ -3,6 +3,7 @@ package com.vungn.routes
 import com.vungn.database.Database
 import com.vungn.entities.UserEntity
 import com.vungn.model.User
+import com.vungn.model.UserRequest
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
@@ -40,7 +41,7 @@ fun Route.userRoutes() {
                 set(it.avatar, avatar)
             }
             if (result == 1)
-                call.respond(HttpStatusCode.OK)
+                call.respond(UserRequest(name = name, email = email, avatar = avatar))
             else
                 call.respond(HttpStatusCode.BadRequest)
         }

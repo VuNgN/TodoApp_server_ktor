@@ -6,7 +6,7 @@ plugins {
     application
     kotlin("jvm") version "1.7.10"
     id("io.ktor.plugin") version "2.1.0"
-                id("org.jetbrains.kotlin.plugin.serialization") version "1.7.10"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.7.10"
 }
 
 group = "com.vungn"
@@ -25,7 +25,10 @@ repositories {
 dependencies {
     implementation("org.ktorm:ktorm-core:3.5.0")
     implementation("mysql:mysql-connector-java:8.0.30")
+    implementation("com.google.api-client:google-api-client:2.0.0")
+    implementation("com.google.appengine:appengine-api-1.0-sdk:2.0.7")
 
+    implementation("io.ktor:ktor-server-auth:$ktor_version")
     implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktor_version")
