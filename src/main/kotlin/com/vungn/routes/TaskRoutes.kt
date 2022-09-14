@@ -38,7 +38,10 @@ private fun String.toInstant(): Instant {
 fun Route.taskRoutes() {
     route("task") {
         get {
-            val tasks = Database.database.from(TaskEntity).select().map(::resultRowToTask)
+            val formParameters = call.receiveParameters()
+            val userId = formParameters.getOrFail("userId").toInt()
+            val tasks =
+                Database.database.from(TaskEntity).select().where(TaskEntity.userId eq userId).map(::resultRowToTask)
             call.respond(tasks)
         }
         get("{id?}") {

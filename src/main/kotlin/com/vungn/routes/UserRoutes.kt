@@ -3,10 +3,7 @@ package com.vungn.routes
 import com.vungn.database.Database
 import com.vungn.entities.UserEntity
 import com.vungn.model.User
-import com.vungn.model.UserRequest
-import io.ktor.http.*
 import io.ktor.server.application.*
-import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.util.*
@@ -30,20 +27,20 @@ fun Route.userRoutes() {
             val user = Database.database.from(UserEntity).select().where { UserEntity.id eq id }.map(::resultRowToUser)
             call.respond(user)
         }
-        post {
-            val formParameters = call.receiveParameters()
-            val name = formParameters.getOrFail("name")
-            val email = formParameters.getOrFail("email")
-            val avatar = formParameters.getOrFail("avatar")
-            val result = Database.database.insert(UserEntity) {
-                set(it.name, name)
-                set(it.email, email)
-                set(it.avatar, avatar)
-            }
-            if (result == 1)
-                call.respond(UserRequest(name = name, email = email, avatar = avatar))
-            else
-                call.respond(HttpStatusCode.BadRequest)
-        }
+//        post {
+//            val formParameters = call.receiveParameters()
+//            val name = formParameters.getOrFail("name")
+//            val email = formParameters.getOrFail("email")
+//            val avatar = formParameters.getOrFail("avatar")
+//            val result = Database.database.insert(UserEntity) {
+//                set(it.name, name)
+//                set(it.email, email)
+//                set(it.avatar, avatar)
+//            }
+//            if (result == 1)
+//                call.respond(UserRequest(name = name, email = email, avatar = avatar))
+//            else
+//                call.respond(HttpStatusCode.BadRequest)
+//        }
     }
 }
